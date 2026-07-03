@@ -2,7 +2,7 @@ import random
 
 from .board import Board
 from .constants import BOARD_SIZE, WHITE
-from .evaluator import WIN_SCORE, evaluate  # type: ignore[import-not-found]
+from .evaluation import WIN_SCORE, evaluate  # type: ignore[import-not-found]
 from .game import Game
 from .move import Move
 
