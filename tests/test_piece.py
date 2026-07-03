@@ -31,3 +31,18 @@ def test_piece_copy():
 
 def test_repr():
     assert repr(Piece(WHITE)) == "WM"
+
+
+def test_is_black():
+    piece = Piece(BLACK)
+
+    assert piece.is_black
+    assert not piece.is_white
+
+
+def test_is_king_repr():
+    piece = Piece(BLACK, KING)
+
+    assert piece.is_king
+    assert not piece.is_man
+    assert repr(piece) == "BK"
