@@ -3,50 +3,54 @@ requires = ["setuptools>=70", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Checkers"
+name = "checkers"
 version = "0.1.0"
 description = "A modern checkers engine written in Python."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
+
 authors = [
     { name = "Aryan Patel" }
 ]
+
 keywords = [
     "checkers",
     "draughts",
     "engine",
-    "game-ai",
     "minimax",
-    "alpha-beta"
+    "alpha-beta",
 ]
+
 classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
 ]
 
 dependencies = []
 
 [project.optional-dependencies]
 dev = [
+    "black>=24.0",
+    "mypy>=1.10",
     "pytest>=8.0",
     "pytest-cov>=5.0",
     "ruff>=0.6",
-    "black>=24.0",
-    "mypy>=1.10",
 ]
 
 [tool.black]
 line-length = 88
-target-version = ["py312"]
+target-version = ["py311"]
 
 [tool.ruff]
 line-length = 88
-target-version = "py312"
+target-version = "py311"
 
 [tool.ruff.lint]
 select = [
@@ -71,23 +75,34 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = [
     "-ra",
-    "--strict-markers",
     "--strict-config",
+    "--strict-markers",
+    "--cov=engine",
+    "--cov-report=term-missing",
 ]
 
 [tool.coverage.run]
-source = ["engine"]
+branch = true
 
 [tool.coverage.report]
 show_missing = true
 skip_covered = false
 precision = 2
 
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+]
+
 [tool.mypy]
-python_version = "3.12"
+python_version = "3.11"
+
 strict = true
-warn_unused_configs = true
+
 warn_return_any = true
+warn_unused_configs = true
 warn_unused_ignores = true
-disallow_untyped_defs = true
+warn_redundant_casts = true
+warn_unreachable = true
+
 check_untyped_defs = true
