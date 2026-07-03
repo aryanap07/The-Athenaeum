@@ -1,1 +1,1 @@
-A modern checkers engine written in Python.
+A modern, extensible checkers engine written in Python.
