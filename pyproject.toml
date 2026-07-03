@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "checkers"
 version = "0.1.0"
-description = "A modern checkers engine written in Python."
+description = "A modern, extensible checkers engine written in Python."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
