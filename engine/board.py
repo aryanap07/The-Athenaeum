@@ -1,4 +1,4 @@
-from .constants import BOARD_SIZE, WHITE, BLACK, EMPTY
+from .constants import BLACK, BOARD_SIZE, EMPTY, WHITE
 from .piece import Piece
 
 
@@ -47,11 +47,20 @@ class Board:
     def in_bounds(row: int, col: int) -> bool:
         return 0 <= row < BOARD_SIZE and 0 <= col < BOARD_SIZE
 
+    def pieces(self, color: int):
+        grid = self.grid
+
+        for row in range(BOARD_SIZE):
+            grid_row = grid[row]
+            for col in range(BOARD_SIZE):
+                piece = grid_row[col]
+                if piece is not None and piece.color == color:
+                    yield row, col, piece
+
     def copy(self) -> "Board":
         board = Board.__new__(Board)
         board.grid = [
-            [piece.copy() if piece else EMPTY for piece in row]
-            for row in self.grid
+            [piece.copy() if piece else EMPTY for piece in row] for row in self.grid
         ]
         return board
 
@@ -72,10 +81,7 @@ class Board:
 
         for row in self.grid:
             rows.append(
-                " ".join(
-                    "." if piece is None else repr(piece)
-                    for piece in row
-                )
+                " ".join("." if piece is None else repr(piece) for piece in row)
             )
 
         return "\n".join(rows)

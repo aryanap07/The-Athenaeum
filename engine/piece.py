@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from .constants import WHITE, BLACK, MAN, KING
+from .constants import BLACK, KING, MAN, WHITE
 
 
 @dataclass(slots=True)
